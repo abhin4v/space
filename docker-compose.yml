@@ -16,7 +16,7 @@ services:
       - SYMFONY__ENV__MAILER_USER=~
       - SYMFONY__ENV__MAILER_PASSWORD=~
       - SYMFONY__ENV__FROM_EMAIL=wallabag@space.abhinavsarkar.net
-      - SYMFONY__ENV__DOMAIN_NAME=http://space.abhinavsarkar.net
+      - SYMFONY__ENV__DOMAIN_NAME=https://bookmarks.abhinavsarkar.net
     depends_on:
       - db
     volumes:
@@ -37,6 +37,8 @@ services:
       - wallabag
     ports:
       - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx-conf:/etc/nginx/conf.d:ro
       - ./nginx-log:/var/log/nginx
+      - ./certs:/etc/nginx/certs:ro
