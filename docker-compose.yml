@@ -12,7 +12,7 @@ services:
       - SYMFONY__ENV__DATABASE_NAME=wallabag
       - SYMFONY__ENV__DATABASE_USER=wallabag
       - SYMFONY__ENV__DATABASE_PASSWORD=${WB_PASSWORD}
-      - SYMFONY__ENV__MAILER_HOST=127.0.0.1
+      - SYMFONY__ENV__MAILER_HOST=smtp
       - SYMFONY__ENV__MAILER_USER=~
       - SYMFONY__ENV__MAILER_PASSWORD=~
       - SYMFONY__ENV__FROM_EMAIL=wallabag@space.abhinavsarkar.net
@@ -42,3 +42,7 @@ services:
       - ./nginx-conf:/etc/nginx/conf.d:ro
       - ./nginx-log:/var/log/nginx
       - ./certs:/etc/nginx/certs:ro
+  smtp:
+    image: namshi/smtp
+    environment:
+      MAILNAME: space.abhinavsarkar.net
