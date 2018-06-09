@@ -62,3 +62,23 @@ services:
     volumes:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
+  gitea:
+    image: gitea/gitea:latest
+    environment:
+      APP_NAME: "Code dot abhinavsarkar.net"
+      RUN_MODE: prod
+      SSH_DOMAIN: code.abhinavsarkar.net
+      SSH_PORT: 222
+      DB_TYPE: postgres
+      DB_HOST: "db:5432"
+      DB_USER: postgres
+      DB_PASSWD: ${PG_PASSWORD}
+      INSTALL_LOCK: "false"
+      SECRET_KEY: ${GT_SECRET_KEY}
+    restart: always
+    volumes:
+      - ./gitea-data:/data
+    ports:
+      - "222:22"
+    depends_on:
+      - db
