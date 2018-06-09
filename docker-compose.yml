@@ -19,6 +19,7 @@ services:
       - SYMFONY__ENV__DOMAIN_NAME=https://bookmarks.abhinavsarkar.net
     depends_on:
       - db
+      - smtp
     volumes:
       - ./wallabag/images:/var/www/wallabag/web/assets/images
   db:
@@ -46,3 +47,18 @@ services:
     image: namshi/smtp
     environment:
       MAILNAME: space.abhinavsarkar.net
+  pihole:
+    image: diginc/pi-hole:latest
+    environment:
+      ServerIP: ${PH_SERVER_IP}
+      WEBPASSWORD: ${PH_PASSWORD}
+      DNS1: 1.1.1.1
+      DNS2: 1.0.0.1
+      VIRTUAL_HOST: pihole.abhinavsarkar.net
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    restart: unless-stopped
+    volumes:
+      - ./pihole-data/pihole:/etc/pihole
+      - ./pihole-data/dnsmasq:/etc/dnsmasq.d
