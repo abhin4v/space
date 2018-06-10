@@ -36,6 +36,7 @@ services:
       - NGINX_PORT=80
     depends_on:
       - wallabag
+      - gitea
     ports:
       - "80:80"
       - "443:443"
