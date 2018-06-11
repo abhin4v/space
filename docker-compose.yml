@@ -49,7 +49,7 @@ services:
     environment:
       MAILNAME: space.abhinavsarkar.net
   pihole:
-    image: diginc/pi-hole:latest
+    image: diginc/pi-hole:debian_v3.3.1
     environment:
       ServerIP: ${PH_SERVER_IP}
       WEBPASSWORD: ${PH_PASSWORD}
@@ -64,7 +64,7 @@ services:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
   gitea:
-    image: gitea/gitea:latest
+    image: gitea/gitea:1.4.2
     environment:
       APP_NAME: "Code dot abhinavsarkar.net"
       RUN_MODE: prod
