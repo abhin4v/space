@@ -1,0 +1,20 @@
+[Unit]
+Description=Space service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Environment="PG_PASSWORD="
+Environment="WB_PASSWORD="
+Environment="PH_PASSWORD="
+Environment="PH_SERVER_IP="
+Environment="GT_SECRET_KEY="
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/abhinav/space
+ExecStart=/usr/bin/docker-compose up -d
+ExecStop=/usr/bin/docker-compose stop
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
