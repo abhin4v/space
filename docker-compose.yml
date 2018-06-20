@@ -85,3 +85,9 @@ services:
       - db
   site:
     image: abhin4v/abhinavsarkar.net:latest
+  hooks:
+    build:
+      context: ./webhooks
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/opt/space

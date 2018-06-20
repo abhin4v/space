@@ -1,0 +1,7 @@
+[
+  {
+    "id": "redeploy-site",
+    "execute-command": "/var/scripts/redeploy-site.sh",
+    "command-working-directory": "/opt/space"
+  }
+]
