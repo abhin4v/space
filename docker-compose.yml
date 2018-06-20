@@ -83,3 +83,5 @@ services:
       - "222:22"
     depends_on:
       - db
+  site:
+    image: abhin4v/abhinavsarkar.net:latest
