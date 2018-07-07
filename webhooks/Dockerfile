@@ -1,5 +1,5 @@
 FROM almir/webhook
-RUN apk add --update docker py-pip \
+RUN apk add --update docker py-pip heirloom-mailx \
     && pip install docker-compose \
     && rm -rf /var/cache/apk/*
 COPY hooks.json /etc/webhook/hooks.json
