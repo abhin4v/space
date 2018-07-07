@@ -45,7 +45,8 @@ services:
       - ./nginx-log:/var/log/nginx
       - ./certs:/etc/nginx/certs:ro
   smtp:
-    image: namshi/smtp
+    build:
+      context: ./smtp
     environment:
       MAILNAME: space.abhinavsarkar.net
   pihole:
