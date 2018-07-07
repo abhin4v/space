@@ -9,6 +9,7 @@ Environment="WB_PASSWORD="
 Environment="PH_PASSWORD="
 Environment="PH_SERVER_IP="
 Environment="GT_SECRET_KEY="
+Environment="MR_PASSWORD="
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/home/abhinav/space

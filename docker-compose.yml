@@ -1,4 +1,6 @@
 version: '3'
+volumes:
+  matomo:
 services:
   wallabag:
     image: wallabag/wallabag
@@ -29,6 +31,12 @@ services:
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+  mariadb:
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MR_PASSWORD}
+    volumes:
+      - ./mariadb-data:/var/lib/mysql
   nginx:
     image: nginx:1.15
     environment:
@@ -44,6 +52,7 @@ services:
       - ./nginx-conf:/etc/nginx/conf.d:ro
       - ./nginx-log:/var/log/nginx
       - ./certs:/etc/nginx/certs:ro
+      - matomo:/var/www/html
   smtp:
     build:
       context: ./smtp
@@ -92,3 +101,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .:/opt/space
+  matomo:
+    image: matomo:3.5.1-fpm
+    volumes:
+      - ./matomo-config:/var/www/html/config
+      - matomo:/var/www/html
