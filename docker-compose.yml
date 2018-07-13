@@ -74,7 +74,7 @@ services:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
   gitea:
-    image: gitea/gitea:1.4.2
+    image: gitea/gitea:1.4
     environment:
       APP_NAME: "Code dot abhinavsarkar.net"
       RUN_MODE: prod
@@ -102,7 +102,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - .:/opt/space
   matomo:
-    image: matomo:3.5.1-fpm
+    image: matomo:3.5-fpm
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
