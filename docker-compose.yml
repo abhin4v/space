@@ -106,3 +106,9 @@ services:
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer-data:/data
