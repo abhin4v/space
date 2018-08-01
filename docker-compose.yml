@@ -25,14 +25,14 @@ services:
     volumes:
       - ./wallabag/images:/var/www/wallabag/web/assets/images
   db:
-    image: postgres:10
+    image: postgres:10.4
     restart: always
     environment:
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
   mariadb:
-    image: mariadb:10
+    image: mariadb:10.3
     environment:
       MYSQL_ROOT_PASSWORD: ${MR_PASSWORD}
     volumes:
