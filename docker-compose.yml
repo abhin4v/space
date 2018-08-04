@@ -24,6 +24,7 @@ services:
       - smtp
     volumes:
       - ./wallabag/images:/var/www/wallabag/web/assets/images
+
   db:
     image: postgres:10.4
     restart: always
@@ -31,12 +32,14 @@ services:
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
   mariadb:
     image: mariadb:10.3
     environment:
       MYSQL_ROOT_PASSWORD: ${MR_PASSWORD}
     volumes:
       - ./mariadb-data:/var/lib/mysql
+
   nginx:
     image: nginx:1.15
     environment:
@@ -53,11 +56,13 @@ services:
       - ./nginx-log:/var/log/nginx
       - ./certs:/etc/nginx/certs:ro
       - matomo:/var/www/html
+
   smtp:
     build:
       context: ./smtp
     environment:
       MAILNAME: space.abhinavsarkar.net
+
   pihole:
     image: diginc/pi-hole:debian_v3.3.1
     environment:
@@ -73,6 +78,7 @@ services:
     volumes:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
+
   gitea:
     image: gitea/gitea:1.4
     environment:
@@ -93,22 +99,52 @@ services:
       - "222:22"
     depends_on:
       - db
+
   site:
     image: abhin4v/abhinavsarkar.net:latest
+
   hooks:
     build:
       context: ./webhooks
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .:/opt/space
+
   matomo:
     image: matomo:3.5-fpm
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
+
   portainer:
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer-data:/data
+
+  drone-server:
+    image: drone/drone:0.8
+    volumes:
+      - ./drone-data:/var/lib/drone
+    restart: always
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_GITEA=true
+      - DRONE_GITEA_URL=https://code.abhinavsarkar.net
+      - DRONE_HOST=https://drone.abhinavsarkar.net
+      - DRONE_SECRET=${DRONE_SECRET}
+      - DRONE_ADMIN=abhin4v
+
+  drone-agent:
+    image: drone/agent:0.8
+    command: agent
+    restart: always
+    depends_on:
+      - drone-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=drone-server:9000
+      - DRONE_SECRET=${DRONE_SECRET}
+
