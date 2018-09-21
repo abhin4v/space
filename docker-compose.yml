@@ -111,7 +111,7 @@ services:
       - .:/opt/space
 
   matomo:
-    image: matomo:3.5-fpm
+    image: matomo:3.6-fpm
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
