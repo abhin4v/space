@@ -64,7 +64,7 @@ services:
       MAILNAME: space.abhinavsarkar.net
 
   pihole:
-    image: diginc/pi-hole:debian_v3.3.1
+    image: pihole/pihole:4.0.0-1
     environment:
       ServerIP: ${PH_SERVER_IP}
       WEBPASSWORD: ${PH_PASSWORD}
