@@ -1,6 +1,7 @@
 version: '3'
 volumes:
   matomo:
+  photothumbs:
 services:
   wallabag:
     image: wallabag/wallabag
@@ -102,6 +103,9 @@ services:
 
   site:
     image: abhin4v/abhinavsarkar.net:latest
+    volumes:
+      - /home/abhinav/space/site-data/photos:/opt/abhinavsarkar.net/photos/images
+      - photothumbs:/opt/abhinavsarkar.net/photos/thumbs
 
   hooks:
     build:
