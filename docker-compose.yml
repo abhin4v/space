@@ -65,7 +65,7 @@ services:
       MAILNAME: space.abhinavsarkar.net
 
   pihole:
-    image: pihole/pihole:4.0.0-1
+    image: pihole/pihole:4.1
     environment:
       ServerIP: ${PH_SERVER_IP}
       WEBPASSWORD: ${PH_PASSWORD}
@@ -81,7 +81,7 @@ services:
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
 
   gitea:
-    image: gitea/gitea:1.5
+    image: gitea/gitea:1.6
     environment:
       APP_NAME: "Code dot abhinavsarkar.net"
       RUN_MODE: prod
@@ -115,7 +115,7 @@ services:
       - .:/opt/space
 
   matomo:
-    image: matomo:3.6-fpm
+    image: matomo:3.7-fpm
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
