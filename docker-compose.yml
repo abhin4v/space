@@ -81,7 +81,7 @@ services:
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
 
   gitea:
-    image: gitea/gitea:1.6
+    image: gitea/gitea:1.7
     environment:
       APP_NAME: "Code dot abhinavsarkar.net"
       RUN_MODE: prod
