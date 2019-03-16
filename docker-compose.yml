@@ -79,6 +79,7 @@ services:
     volumes:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
+      - ${PWD}/pihole-log/pihole.log:/var/log/pihole.log
 
   gitea:
     image: gitea/gitea:1.7

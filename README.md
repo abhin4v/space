@@ -23,6 +23,12 @@ $ sudo apt-get install -y docker-ce docker-compose
 $ sudo gpasswd -a $USER docker
 ```
 
+### Install fail2ban
+
+```bash
+$ sudo apt-get install geoip-bin geoip-database fail2ban
+```
+
 ### Setup space
 
 - copy/clone this repo to `~/space`
@@ -54,3 +60,12 @@ $ sudo systemctl enable space
 $ sudo systemctl start space
 ```
 - edit `/etc/resolv.conf` to set the nameserver to `127.0.0.1`
+- setup and start fail2ban
+
+```bash
+$ sudo cp fail2ban/iptables-pihole-geoip-fence.conf /etc/fail2ban/action.d/iptables-pihole-geoip-fence.conf
+$ sudo cp fail2ban/pihole-geoip.conf /etc/fail2ban/filter.d/pihole-geoip.conf
+$ sudo cp fail2ban/jail.local /etc/fail2ban/jail.local
+$ sudo service fail2ban start
+```
+

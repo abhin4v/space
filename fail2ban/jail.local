@@ -1,0 +1,17 @@
+[DEFAULT]
+
+# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not
+# ban a host which matches an address in this list. Several addresses can be
+# defined using space separator.
+ignoreip = 127.0.0.1 172.20.0.1
+
+[pihole-geoip]
+enabled  = true
+port     = 53
+protocol = udp
+banaction = iptables-pihole-geoip-fence
+filter   = pihole-geoip
+logpath  = /home/abhinav/space/pihole-log/pihole.log
+bantime  = 604800  ; 1 week
+findtime = 86400   ; 1 day
+maxretry = 1
