@@ -153,3 +153,21 @@ services:
       - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=${DRONE_SECRET}
 
+  arpita_site:
+    image: ghost:2.21-alpine
+    restart: always
+    volumes:
+     - ./ghost/arpita_site:/var/lib/ghost/content
+    environment:
+    # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      url: https://arpita.site
+      database__client: mysql
+      database__connection__host: mariadb
+      database__connection__user: root
+      database__connection__password: ${MR_PASSWORD}
+      database__connection__database: arpita_site
+      mail__transport: SMTP
+      mail__from: "Server <ghost@arpita.site>"
+      mail__options__service: SMTP
+      mail__options__host: smtp
+      mail__options__port: 25
