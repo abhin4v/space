@@ -80,6 +80,9 @@ services:
       - ./pihole-data/pihole:/etc/pihole
       - ./pihole-data/dnsmasq:/etc/dnsmasq.d
       - ${PWD}/pihole-log/pihole.log:/var/log/pihole.log
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
 
   gitea:
     image: gitea/gitea:1.7
