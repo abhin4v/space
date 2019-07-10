@@ -42,7 +42,7 @@ services:
       - ./mariadb-data:/var/lib/mysql
 
   nginx:
-    image: nginx:1.15
+    image: nginx:1.17
     environment:
       - NGINX_HOST=space.abhinavsarkar.net
       - NGINX_PORT=80
