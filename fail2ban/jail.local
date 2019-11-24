@@ -13,5 +13,5 @@ banaction = iptables-pihole-geoip-fence
 filter   = pihole-geoip
 logpath  = /home/abhinav/space/pihole-log/pihole.log
 bantime  = 604800  ; 1 week
-findtime = 86400   ; 1 day
+findtime = 10      ; 10 sec
 maxretry = 1
