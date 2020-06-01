@@ -158,7 +158,7 @@ services:
       - DRONE_SECRET=${DRONE_SECRET}
 
   arpita_site:
-    image: ghost:2.21-alpine
+    image: ghost:3.13.4-alpine
     restart: always
     volumes:
      - ./ghost/arpita_site:/var/lib/ghost/content
