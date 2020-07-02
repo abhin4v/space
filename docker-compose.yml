@@ -65,7 +65,7 @@ services:
       MAILNAME: space.abhinavsarkar.net
 
   pihole:
-    image: pihole/pihole:v4.4
+    image: pihole/pihole:v5.0
     environment:
       ServerIP: ${PH_SERVER_IP}
       WEBPASSWORD: ${PH_PASSWORD}
