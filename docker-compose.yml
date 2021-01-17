@@ -84,6 +84,14 @@ services:
     dns:
       - 127.0.0.1
       - 1.1.1.1
+    depends_on:
+      - cloudflared
+
+  cloudflared:
+    image: visibilityspots/cloudflared
+    environment:
+      UPSTREAM1: https://cloudflare-dns.com/dns-query
+      UPSTREAM2: https://mozilla.cloudflare-dns.com/dns-query
 
   gitea:
     image: gitea/gitea:1.7.6
