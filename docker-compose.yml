@@ -64,35 +64,6 @@ services:
     environment:
       MAILNAME: space.abhinavsarkar.net
 
-  pihole:
-    image: pihole/pihole:v5.1.2
-    environment:
-      ServerIP: ${PH_SERVER_IP}
-      WEBPASSWORD: ${PH_PASSWORD}
-      DNS1: 1.1.1.1
-      DNS2: 1.0.0.1
-      VIRTUAL_HOST: pihole.abhinavsarkar.net
-      TZ: "Asia/Kolkata"
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-    restart: unless-stopped
-    volumes:
-      - ./pihole-data/pihole:/etc/pihole
-      - ./pihole-data/dnsmasq:/etc/dnsmasq.d
-      - ${PWD}/pihole-log/pihole.log:/var/log/pihole.log
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    depends_on:
-      - cloudflared
-
-  cloudflared:
-    image: visibilityspots/cloudflared
-    environment:
-      UPSTREAM1: https://cloudflare-dns.com/dns-query
-      UPSTREAM2: https://mozilla.cloudflare-dns.com/dns-query
-
   gitea:
     image: gitea/gitea:1.7.6
     environment:
@@ -128,7 +99,7 @@ services:
       - .:/opt/space
 
   matomo:
-    image: matomo:4.1-fpm
+    image: matomo:4.3-fpm
     volumes:
       - ./matomo-config:/var/www/html/config
       - matomo:/var/www/html
